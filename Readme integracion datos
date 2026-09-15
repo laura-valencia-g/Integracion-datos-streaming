@@ -1,0 +1,50 @@
+# Integración de Datos Multidimensional — Plataformas de Streaming
+
+Integración de bases de datos externas con una base de datos interna mediante un enfoque de similitud difusa (fuzzy matching multivariable), aplicado a catálogos de contenido de Netflix, Amazon Prime, Disney+ y HBO Max.
+
+*Trabajo académico grupal — Universidad EAFIT, 2024. Coautoría: Laura Valencia Giraldo, Mariana Serna y Juan Manuel Pabón.*
+
+## Problema de negocio
+
+Con Netflix como base de datos interna de referencia, y Amazon, Disney+ y HBO como bases de datos externas, el objetivo fue **integrar y comparar catálogos de contenido audiovisual** de distintas plataformas de streaming para identificar similitudes y diferencias en su oferta — información útil, por ejemplo, para que un productor o director decida en qué plataforma podría tener mayor éxito un tipo específico de contenido.
+
+## Metodología
+
+1. **Selección de variables comunes** entre las 4 plataformas: duración (`runtime`), año de lanzamiento, número de temporadas, calificación y votos de IMDb, y popularidad y calificación de TMDB.
+2. **Integración por similitud multivariable**: para cada título de las bases externas (Amazon, Disney+, HBO), se calculó su similitud con los clusters de la base interna (Netflix) usando una función de verosimilitud gaussiana multivariable, con un nivel de confiabilidad del 95% (se ajustó desde un 90% inicial, que resultaba demasiado permisivo e integraba prácticamente el 100% del catálogo de Disney+).
+3. **Visualización comparativa** mediante gráficos de radar ("gráficos de araña") para cada plataforma, mostrando el perfil de variables antes y después de la integración.
+
+## Volumen de datos
+
+| Plataforma | Total de registros | Integrados con Netflix |
+|---|---|---|
+| Netflix (interna) | 1,667 | — |
+| Amazon Prime | 581 | 577 |
+| Disney+ | 299 | 297 |
+| HBO Max | 547 | 540 |
+
+## Hallazgos clave
+
+- **Netflix y Disney+** son las plataformas con mayor grado de integración/similitud de catálogo — comparten títulos y perfiles de contenido muy parecidos.
+- El contenido de **HBO** tiende a tener mayor duración, pero menos votos y menor popularidad que Netflix — una señal de catálogo más especializado y con menor alcance masivo.
+- El contenido de **Disney+** tiene menos temporadas y menor duración promedio, pero mayor popularidad (TMDB) con relativamente menos votos en IMDb — consistente con un catálogo orientado a franquicias familiares de alto reconocimiento.
+- El contenido de **Amazon Prime** tiende a tener más temporadas y mayor duración, con niveles de popularidad y votos similares a los de Netflix.
+
+## Valor de negocio
+
+Este tipo de análisis permite fundamentar decisiones de distribución de contenido: identificar en qué plataforma un título con determinadas características (duración, número de temporadas, perfil de audiencia) tendría mayor probabilidad de encajar y tener éxito, basado en el catálogo existente de cada servicio.
+
+## Stack técnico
+
+`Python` · `NumPy` (cálculo de similitud multivariable) · `Pandas` · `Matplotlib` / `Seaborn` (gráficos de radar) · `Plotly Express`
+
+## Contenido del repositorio
+
+| Archivo | Descripción |
+|---|---|
+| `Reto_Final_Integracion_Datos.ipynb` | Notebook completo: carga de datos, integración por similitud, visualización y análisis comparativo entre las 4 plataformas |
+
+## Habilidades aplicadas
+
+Integración de datos multidimensional · Similitud y matching difuso · Análisis comparativo de catálogos · Visualización de datos multivariable (gráficos de radar) · Trabajo colaborativo en equipo de análisis de datos
+
